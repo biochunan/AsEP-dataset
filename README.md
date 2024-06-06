@@ -13,6 +13,7 @@ The raw dataset can be downloaded from [Zenodo](https://doi.org/10.5281/zenodo.1
 
 <!-- table of contents -->
 - [AsEP Dataset](#asep-dataset)
+  - [Structure viewer](#structure-viewer)
   - [Dataset Python Interface (`asep`)](#dataset-python-interface-asep)
     - [Installation](#installation)
       - [devcontainer](#devcontainer)
@@ -26,6 +27,16 @@ The raw dataset can be downloaded from [Zenodo](https://doi.org/10.5281/zenodo.1
     - [Epitope Group](#epitope-group)
 
 ---
+
+## Structure viewer
+
+We provide a 3D viewer for antibody-antigen interface analysis.
+Check it out at [AsEP](https://walle.abycloud.net)
+
+<a href="https://walle.abycloud.net">
+    <img src=figures/viewer-loop.gif width=500 aligned="right">
+</a>
+
 
 ## Dataset Python Interface (`asep`)
 
