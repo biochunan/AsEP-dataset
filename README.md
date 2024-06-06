@@ -1,6 +1,11 @@
 # AsEP Dataset
 
-Antibody-specific Epitope Prediction dataset
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11495514.svg)](https://doi.org/10.5281/zenodo.11495514)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+Antibody-specific Epitope Prediction Dataset. This dataset is used in the manuscript [*AsEP: Benchmarking Deep Learning Methods for Antibody-specific Epitope Prediction*](https://openreview.net) (submitted to NeurIPS 2024 Datasets and Benchmarks).
+
+Dataset is available at [Zenodo](https://doi.org/10.5281/zenodo.11495514).
 
 ## Installation
 
