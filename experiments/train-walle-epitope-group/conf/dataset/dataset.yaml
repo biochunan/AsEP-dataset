@@ -1,0 +1,21 @@
+root: /mnt/Data            # root path for storing AsEP dataset
+name: AsEP                 # dataset name
+node_feat_type: 'pre_cal'  # choices=['pre_cal', 'one_hot', 'custom']
+
+ab:
+  embedding_model: 'igfold'     # choices: ['igfold', 'esm2', 'one_hot'， 'custom']
+  custom_embedding_method: null # Optional[Callable]
+  custom_embedding_method_src:
+    script_path: null           # Optional[str]
+    method_name: null           # Optional[str]
+
+ag:
+  embedding_model: 'esm2'       # choices: ['esm2', 'one_hot'， 'custom']
+  custom_embedding_method: null # Optional[Callable]
+  custom_embedding_method_src:
+    script_path: null           # Optional[str]
+    method_name: null           # Optional[str]
+
+split_idx: null     # Optional[Dict]
+split_method: null  # choices: [null, epitope_ratio, epitope_group]
+                    # if null, default to epitope_ratio

@@ -1,0 +1,24 @@
+{
+  "alpha_pattern": {},
+  "auto_mapping": null,
+  "base_model_name_or_path": "facebook/esm2_t12_35M_UR50D",
+  "bias": "none",
+  "fan_in_fan_out": false,
+  "inference_mode": true,
+  "init_lora_weights": true,
+  "layers_pattern": null,
+  "layers_to_transform": null,
+  "lora_alpha": 1,
+  "lora_dropout": 0.2,
+  "modules_to_save": null,
+  "peft_type": "LORA",
+  "r": 2,
+  "rank_pattern": {},
+  "revision": null,
+  "target_modules": [
+    "query",
+    "key",
+    "value"
+  ],
+  "task_type": "TOKEN_CLS"
+}

@@ -1,0 +1,33 @@
+# defaults:
+#   - lr_scheduler: step_lr
+#   - _self_ # this is needed for hydra to recognize the config group
+
+early_stopping:
+    patience: 10
+    min_delta: 0.0
+    minimize: false
+    metric_name: "valEpoch/avg_epi_node_mcc"
+
+# default callback to save best k models for node level prediction
+model_checkpoint:
+    save_dir:  ${hydra:runtime.cwd}/ckpts
+    k: 3
+    minimize: false
+    metric_name: "valEpoch/avg_epi_node_mcc"
+
+# optional extra callback to save best k models for edge level prediction
+model_checkpoint_edge:
+    save_dir:  ${hydra:runtime.cwd}/ckpts/edge
+    k: 3
+    minimize: false
+    metric_name: "valEpoch/avg_edge_index_bg_mcc"
+
+# ------------------------------
+# learning rate scheduler
+# ------------------------------
+lr_scheduler:
+    name: "StepLR"
+    kwargs:
+        step_size: 10
+        gamma: 0.9
+    step: null  # required by ReduceLROnPlateau, see example above

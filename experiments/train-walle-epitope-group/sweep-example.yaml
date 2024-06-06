@@ -1,0 +1,16 @@
+program: sweep.py  # replace with the path to the program
+method: bayes
+metric:
+  name: edge_index_bg_rec_loss
+  goal: minimize
+parameters:
+  hparams:
+    parameters:
+      train_batch_size:
+        values: [128]
+
+command:
+  - ${env}
+  - python
+  - ${program}
+  - 'mode=dev'

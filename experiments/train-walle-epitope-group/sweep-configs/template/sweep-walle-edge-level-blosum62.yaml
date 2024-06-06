@@ -1,0 +1,85 @@
+# Available metrics:
+# - set:
+#   - trainEpoch
+#   - valEpoch
+#   - testEpoch
+# - metric names:
+#   - avg_edge_index_bg_mcc  (retrain walle at edge level)
+#   - avg_edge_index_bg_tn
+#   - avg_edge_index_bg_fp
+#   - avg_edge_index_bg_fn
+#   - avg_edge_index_bg_tp
+#   - avg_epi_node_auprc (retrain walle at node level)
+#   - avg_epi_node_mcc
+#   - avg_epi_node_tn
+#   - avg_epi_node_fp
+#   - avg_epi_node_fn
+#   - avg_epi_node_tp
+
+program: sweep-cli.py  # if relative path, this is relative to CWD
+method: bayes
+metric:
+  name: valEpoch/avg_edge_index_bg_mcc
+  goal: maximize
+
+parameters:
+  hparams:
+    parameters:
+      train_batch_size:
+        values: [32, 64, 128]
+      val_batch_size:
+        values: [1]
+      test_batch_size:
+        values: [1]
+  loss:
+    parameters:
+      edge_index_bg_rec_loss:
+        parameters:
+          kwargs:
+            parameters:
+              weight_tensor:
+                distribution: uniform
+                min: 50
+                max: 150
+      edge_index_bg_sum_loss:
+        parameters:
+          w:
+            distribution: log_uniform_values
+            min: 1e-7
+            max: 1e-4
+  callbacks:
+    parameters:
+      early_stopping:
+        parameters:
+          patience:
+            values: [20]  # let agent decide killing runs
+  hparams:
+    parameters:
+      num_edge_cutoff:
+        distribution: normal
+        mu: 3.
+        sigma: 1.
+
+early_terminate:
+  type: hyperband
+  min_iter: 3
+  max_iter: 27
+
+command:
+  - ${env}
+  - python
+  - ${program}
+  - 'mode=train'
+  - 'num_threads=1'
+  - 'hparams.max_epochs=200'
+  - "dataset.split_idx='epitope_group'"
+  - "dataset.node_feat_type='custom'"
+  - "dataset.ab.custom_embedding_method_src.script_path='/workspaces/AsEP-dataset/asep/data/embedding/blosum62.py'"
+  - "dataset.ab.custom_embedding_method_src.method_name='embed_blosum62'"
+  - "dataset.ag.custom_embedding_method_src.script_path='/workspaces/AsEP-dataset/asep/data/embedding/blosum62.py'"
+  - "dataset.ag.custom_embedding_method_src.method_name='embed_blosum62'"
+  - "hparams.input_ab_dim=24"
+  - "hparams.input_ag_dim=24"
+  - 'wandb_init.tags=["blosum62", "optimize-edge-level-mcc"]'
+  # - 'callbacks.lr_scheduler=null'
+  # - 'wandb_init.notes="optimize valEpoch/avg_edge_index_bg_mcc, no lr scheduler"'

@@ -1,0 +1,11 @@
+edge_index_bg_rec_loss:
+  name: "edge_index_bg_rec_loss"
+  w: 1.0
+  kwargs:
+    reduction: "mean"  # in {"mean", "sum"}
+    weight_tensor: ${hparams.pos_weight}  # null => use neg/pos ratio; float => use this value
+
+edge_index_bg_sum_loss:
+  name: "edge_index_bg_sum_loss"
+  w: 0.0003942821556421417
+  kwargs: {thr: 40}

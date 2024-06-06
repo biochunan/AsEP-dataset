@@ -1,0 +1,19 @@
+work_dir: ${hydra:runtime.cwd}
+
+defaults:
+  - hydra: hydra
+  - hparams: hparams
+  - loss: loss
+  - optimizer: adam
+  - callbacks: default_callbacks
+  - wandb_init: wandb
+  - dataset: dataset
+  - _self_ # this is needed for hydra to recognize the config group
+  - pretrained_model: null
+
+mode: "train"  # in {dev, sweep, train, tuning}
+try_gpu: true
+logging_method: wandb  # choices: wandb (default), tensorboard
+keep_interim_ckpts: true  # keep all interim checkpoints
+num_threads: 4
+seed: ???

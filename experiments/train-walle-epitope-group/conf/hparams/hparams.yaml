@@ -1,0 +1,23 @@
+model_type: "graph"
+train_batch_size: 32
+val_batch_size: 1
+test_batch_size: 1
+
+batch_size: ${.train_batch_size}
+max_epochs: 100
+pos_weight: 100.
+
+input_ab_dim: 512
+input_ag_dim: 480
+input_ab_act: "relu"
+input_ag_act: "relu"
+dim_list:
+  - 128
+  - 64
+act_list:
+  - null
+
+decoder:
+  name: 'inner_prod'
+num_edge_cutoff: 3
+edge_cutoff: 0.5

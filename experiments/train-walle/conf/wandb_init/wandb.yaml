@@ -1,0 +1,8 @@
+# wandb configs
+project: ${oc.env:WANDB_PROJECT}
+entity: ${oc.env:WANDB_ENTITY}
+group: ${mode}
+job_type: ${mode}  # choices: dev, train, etc.
+notes: ${mode}
+tags:
+ - ${mode}

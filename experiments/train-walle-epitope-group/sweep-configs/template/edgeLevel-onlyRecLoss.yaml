@@ -1,0 +1,73 @@
+# Available metrics:
+# - set:
+#   - trainEpoch
+#   - valEpoch
+#   - testEpoch
+# - metric names:
+#   - avg_edge_index_bg_mcc  (retrain walle at edge level)
+#   - avg_edge_index_bg_tn
+#   - avg_edge_index_bg_fp
+#   - avg_edge_index_bg_fn
+#   - avg_edge_index_bg_tp
+#   - avg_epi_node_auprc (retrain walle at node level)
+#   - avg_epi_node_mcc
+#   - avg_epi_node_tn
+#   - avg_epi_node_fp
+#   - avg_epi_node_fn
+#   - avg_epi_node_tp
+
+program: /workspaces/AsEP-dataset/experiments/retrain-walle/sweep-cli.py  # if relative path, this is relative to CWD
+method: bayes
+metric:
+  name: valEpoch/avg_edge_index_bg_mcc
+  goal: maximize
+
+parameters:
+  hparams:
+    parameters:
+      train_batch_size:
+        values: [32, 64, 128]
+  loss:
+    parameters:
+      edge_index_bg_rec_loss:
+        parameters:
+          kwargs:
+            parameters:
+              weight_tensor:
+                distribution: uniform
+                min: 50
+                max: 1000
+      # edge_index_bg_sum_loss:
+        # parameters:
+        #   w:
+        #     distribution: log_uniform_values
+        #     min: 1e-16
+        #     max: 1e-10
+  callbacks:
+    parameters:
+      early_stopping:
+        parameters:
+          patience:
+            values: [50]  # let agent decide killing runs
+  hparams:
+    parameters:
+      num_edge_cutoff:
+        # values: [0.]
+        distribution: uniform
+        min: 0.
+        max: 5.
+
+early_terminate:
+  type: hyperband
+  min_iter: 3
+  max_iter: 27
+
+command:
+  - ${env}
+  - python
+  - ${program}
+  - "mode=train"
+  - "num_threads=1"
+  - "hparams.max_epochs=200"
+  - "loss=rec_loss"
+  - "dataset.split_idx='epitope_group'"
