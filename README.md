@@ -30,7 +30,7 @@ The raw dataset can be downloaded from [Zenodo](https://doi.org/10.5281/zenodo.1
 
 ## Structure viewer
 
-We provide a 3D viewer for antibody-antigen interface analysis.
+We provide a 3D viewer for antibody-antigen interface visualization.
 Check it out at [AsEP](https://walle.abycloud.net)
 
 <a href="https://walle.abycloud.net">
