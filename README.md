@@ -33,9 +33,7 @@ The raw dataset can be downloaded from [Zenodo](https://doi.org/10.5281/zenodo.1
 We provide a 3D viewer for antibody-antigen interface visualization.
 Check it out at [AsEP](https://walle.abycloud.net)
 
-<a href="https://walle.abycloud.net">
-    <img src=figures/viewer-loop.gif width=500 aligned="right">
-</a>
+[![3DViewer](figures/viewer-loop.gif)](https://walle.abycloud.net)
 
 
 ## Dataset Python Interface (`asep`)
