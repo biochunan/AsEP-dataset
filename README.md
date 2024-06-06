@@ -13,8 +13,10 @@ The raw dataset can be downloaded from [Zenodo](https://doi.org/10.5281/zenodo.1
 
 <!-- table of contents -->
 - [AsEP Dataset](#asep-dataset)
-  - [Installation](#installation)
   - [Dataset Python Interface (`asep`)](#dataset-python-interface-asep)
+    - [Installation](#installation)
+      - [devcontainer](#devcontainer)
+      - [conda environment](#conda-environment)
     - [Download dataset](#download-dataset)
     - [Data Loader](#data-loader)
     - [Data Split](#data-split)
@@ -23,7 +25,26 @@ The raw dataset can be downloaded from [Zenodo](https://doi.org/10.5281/zenodo.1
     - [Epitope Ratio](#epitope-ratio)
     - [Epitope Group](#epitope-group)
 
-## Installation
+---
+
+## Dataset Python Interface (`asep`)
+
+To use the python interface, please install the package `asep`. It provides the following functionalities:
+
+- Dataset interface (see below)
+- Code for loading pre-constructed graphs for antibody-antigen complexes in the dataset
+- Code for constructing the neural network proposed in our manuscript - use Protein Language Models (PLMs) for node embeddings and Graph Neural Networks (GNNs) for graph representation
+- Training and evaluation scripts
+
+### Installation
+
+#### devcontainer
+
+We provide devcontainer configuration for Visual Studio Code in `.devcontainer` directory.
+We recommend users to use the devcontainer for development.
+The documentation for using devcontainer in Visual Studio Code [here](https://code.visualstudio.com/docs/remote/containers).
+
+#### conda environment
 
 ```shell
 # enable conda (init zsh if you are using zsh, or init bash etc.)
@@ -46,15 +67,6 @@ This will do the following:
 - create a conda environment named `walle`
 - install the required packages
 - install the `asep` package in editable mode.
-
-## Dataset Python Interface (`asep`)
-
-To use the python interface, please install the package `asep`. It provides the following functionalities:
-
-- Dataset interface (see below)
-- Code for loading pre-constructed graphs for antibody-antigen complexes in the dataset
-- Code for constructing the neural network proposed in our manuscript - use Protein Language Models (PLMs) for node embeddings and Graph Neural Networks (GNNs) for graph representation
-- Training and evaluation scripts
 
 ### Download dataset
 
