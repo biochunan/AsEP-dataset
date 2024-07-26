@@ -7,7 +7,7 @@
 ![torch-geometric](https://img.shields.io/badge/PyTorch--Geometric-2.5.3-green)
 [![pytorch](https://img.shields.io/badge/PyTorch-2.1.1-blue)](https://pytorch.org/)
 
-**A**ntibody-**s**pecific **E**pitope **P**rediction (AsEP) Dataset. This dataset is used in the manuscript [*AsEP: Benchmarking Deep Learning Methods for Antibody-specific Epitope Prediction*](https://openreview.net) (submitted to NeurIPS 2024 Datasets and Benchmarks).
+**A**ntibody-**s**pecific **E**pitope **P**rediction (AsEP) Dataset. This dataset is used in the manuscript [*AsEP: Benchmarking Deep Learning Methods for Antibody-specific Epitope Prediction*](https://arxiv.org/abs/2407.18184v1) (submitted to NeurIPS 2024 Datasets and Benchmarks).
 
 The raw dataset can be downloaded from [Zenodo](https://doi.org/10.5281/zenodo.11495514).
 
