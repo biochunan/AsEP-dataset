@@ -93,12 +93,27 @@ download-asep /path/to/directory AsEP
 The antibody-antigen complexes are provided as 2D graph pairs. We provide two types of node features, one-hot encoding and pre-calculated embeddings with AntiBERTy and ESM2.
 
 ```python
-from asep.data.asepv1_dataset import AsEPv1Dataset
+from asep.data.asepv1_dataset import AsEPv1Dataset, EmbeddingConfig
 
 # one-hot encoding
-asepv1_dataset = AsEPv1Dataset(root='./data', name='asep', feat_type='one_hot')
-# pre-calculated embeddings with AntiBERTy and ESM2
-asepv1_dataset = AsEPv1Dataset(root='./data', name='asepv1', feat_type='pre_cal')
+config = EmbeddingConfig(node_feat_type="one-hot")
+asepv1_dataset = AsEPv1Dataset(
+        root="/path/to/asep/folder",
+        name="AsEP",
+        embedding_config=config,
+)
+
+# pre-calculated embeddings with AntiBERTy (via igfold) and ESM2
+config = EmbeddingConfig(
+    node_feat_type='pre_cal',
+    ab={"embedding_model": "igfold"},  # change this "esm2" for ESM2 embeddings
+    ag={"embedding_model": "esm2"},
+)
+asepv1_dataset = AsEPv1Dataset(
+        root="/path/to/asep/folder",
+        name="AsEP",
+        embedding_config=config,
+)
 
 # get i-th graph pair and node labels
 i = 0
@@ -113,8 +128,8 @@ edge_index_bg = graph_pair.edge_index_bg  # bipartite graph edge indices between
 The graph pair object `graph_pair` is a `PairData` (inherited from `torch_geometric.data.Data`) object, which contains the following attributes:
 
 - `x_b`, `x_g`: node features of the antibody and antigen, respectively.
-  - if `feat_type == one-hot`, then `x_b` and `x_g` are one-hot encoding of the amino acid residues, shape of `(N, 20)`
-  - if `feat_type == pre_cal`, then `x_b` and `x_g` are embedded with AntiBERTy and ESM2 `esm2_t12_35M_UR50D`, shape of `(N, 512)` and `(N, 480)` respectively
+  - if `one-hot`, then `x_b` and `x_g` are one-hot encoding of the amino acid residues, shape of `(N, 20)`
+  - if `pre_cal`, then `x_b` and `x_g` are embedded with AntiBERTy and ESM2 `esm2_t12_35M_UR50D`, shape of `(N, 512)` and `(N, 480)` respectively
 - `edge_index_b`, `edge_index_g` are edge indices of the antibody and antigen graphs, respectively `(2, E)`
 - `edge_index_bg`: bipartite graph edge indices between the antibody and antigen graphs `(2, E)`
 - `y_b` and `y_g` are node labels for antibody and antigen graphs, respectively `(N,)`
