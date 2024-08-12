@@ -98,9 +98,9 @@ from asep.data.asepv1_dataset import AsEPv1Dataset, EmbeddingConfig
 # one-hot encoding
 config = EmbeddingConfig(node_feat_type="one-hot")
 asepv1_dataset = AsEPv1Dataset(
-        root="/path/to/asep/folder",
-        name="AsEP",
-        embedding_config=config,
+    root="/path/to/asep/download/folder",  # replace with the path to the parent folder of downloaded AsEP
+    name="AsEP",
+    embedding_config=config,
 )
 
 # pre-calculated embeddings with AntiBERTy (via igfold) and ESM2
@@ -110,9 +110,9 @@ config = EmbeddingConfig(
     ag={"embedding_model": "esm2"},
 )
 asepv1_dataset = AsEPv1Dataset(
-        root="/path/to/asep/folder",
-        name="AsEP",
-        embedding_config=config,
+    root="/path/to/asep/download/folder",   # replace with the path to the parent folder of downloaded AsEP
+    name="AsEP",
+    embedding_config=config,
 )
 
 # get i-th graph pair and node labels
